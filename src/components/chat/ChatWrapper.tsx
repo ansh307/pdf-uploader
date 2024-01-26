@@ -11,12 +11,12 @@ import { PLANS } from '@/config/stripe'
 
 interface ChatWrapperProps {
   fileId: string
-  // isSubscribed: boolean
+  isSubscribed: boolean
 }
 
 const ChatWrapper = ({
   fileId,
-
+  isSubscribed
 }: ChatWrapperProps) => {
   const { data, isLoading } = trpc.getFileUploadStatus.useQuery(
     {
