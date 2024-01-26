@@ -16,13 +16,11 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { getUserSubscriptionPlan } from '@/lib/stripe'
 
-// interface PageProps {
-//   subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
-// }
+interface PageProps {
+  subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
+}
 
-// {subscriptionPlan}: PageProps
-
-const Dashboard = () => {
+const Dashboard = ({ subscriptionPlan }: PageProps) => {
   const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null)
 
   const utils = trpc.useContext()
@@ -47,8 +45,8 @@ const Dashboard = () => {
         <h1 className='mb-3 font-bold text-5xl text-gray-900'>
           My Files
         </h1>
-        {/* isSubscribed={subscriptionPlan.isSubscribed} */}
-        <UploadButton />
+
+        <UploadButton isSubscribed={subscriptionPlan.isSubscribed} />
       </div>
 
       {/* display all user files */}
